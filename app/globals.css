@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #fdf7f0; /* warm off-white */
+  --foreground: #3b2d26; /* deep brown */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #2b1a17; /* dark brown */
+    --foreground: #e0dcd1; /* light beige */
+  }
+}
+
+@layer base {
+  :root {
+    /* Light Theme - Warm Brownish/Orangish */
+    --color-bg-1: #fef8f3; /* very light warm */
+    --color-bg-2: #fdebd3;
+    --color-bg-card: #fffaf5;
+    --color-bg-indicator: #f9e6cf;
+    --color-text-primary: #3b2d26;
+    --color-text-secondary: #5c4b41;
+    --color-border: #e2d6c8;
+    --color-primary: #f59e0b; /* warm orange */
+    --color-primary-hover: #d97706;
+    --color-gradient-start: #fffaf5;
+    --color-gradient-mid: #fdebd3;
+    --color-gradient-end: #fce1c6;
+    --card-gradient: linear-gradient(
+      145deg,
+      var(--color-gradient-start) 0%,
+      var(--color-gradient-mid) 50%,
+      var(--color-gradient-end) 100%
+    );
+    --color-button-text: #ffffff;
+    --color-button-border: #e2d6c8;
+    --color-button-start: #f59e0b;
+    --color-button-mid: #f97316;
+    --color-button-end: #ea580c;
+    --color-button-bg: #fffaf580;
+    --color-button-hover: #fdebd380;
+    --color-icon: #3b2d26;
+    --color-glow: #f59e0b20;
+    --color-icon-filter: invert(0%);
+    --spotlight-fill: #fbbf24;
+  }
+
+  .dark {
+    /* Dark Theme - Warm & Moody */
+    --color-bg-1: #2b1a17;
+    --color-bg-2: #22140f;
+    --color-bg-card: #3a2a25;
+    --color-bg-indicator: #4a352f;
+    --color-text-primary: #e0dcd1;
+    --color-text-secondary: #c9bdb1;
+    --color-border: #4a352f;
+    --color-primary: #fb923c; /* brighter orange */
+    --color-primary-hover: #f97316;
+    --color-gradient-start: #2b1a17;
+    --color-gradient-mid: #362721;
+    --color-gradient-end: #3a2a25;
+    --card-gradient: linear-gradient(
+      145deg,
+      var(--color-gradient-start) 0%,
+      var(--color-gradient-mid) 50%,
+      var(--color-gradient-end) 100%
+    );
+    --color-button-text: #ffffff;
+    --color-button-border: #4a352f80;
+    --color-button-start: #d97706;
+    --color-button-mid: #f59e0b;
+    --color-button-end: #fb923c;
+    --color-button-bg: #3a2a2580;
+    --color-button-hover: #4a352f80;
+    --color-icon: #e0dcd1;
+    --color-glow: #fb923c20;
+    --color-icon-filter: invert(100%);
+    --spotlight-fill: #f59e0b;
+  }
+}
+
+@layer utilities {
+  .hero-title {
+    background-image: linear-gradient(
+      to bottom,
+      var(--hero-text-start),
+      var(--hero-text-end)
+    );
+    --hero-text-start: #3b2d26;
+    --hero-text-end: #5c4b41;
+  }
+  .dark .hero-title {
+    --hero-text-start: #e0dcd1;
+    --hero-text-end: #c9bdb1;
+  }
+  .bg-theme-gradient {
+    background: linear-gradient(
+      145deg,
+      var(--color-gradient-start) 0%,
+      var(--color-gradient-mid) 50%,
+      var(--color-gradient-end) 100%
+    );
+  }
+  .bg-card-gradient {
+    background: var(--card-gradient);
+  }
+  .text-gradient-primary {
+    background: linear-gradient(
+      45deg,
+      var(--color-text-primary) 0%,
+      var(--color-text-secondary) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-shift {
+  animation: gradient-shift 8s ease infinite;
+  background-size: 200% 200%;
+}
+
+body {
+  color: var(--color-text);
+  font-family: var(--font-geist-sans);
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.scrollwidth {
+  scrollbar-width: none;
+  scrollbar-track-color: transparent;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
